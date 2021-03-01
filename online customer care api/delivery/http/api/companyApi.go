@@ -44,6 +44,7 @@ func (ca *Companyapi) PostCompany(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type","application/json")
 	_ = json.NewDecoder(r.Body).Decode(&c)
+
 	ca.compService.StoreCompany(&c)
 
 }

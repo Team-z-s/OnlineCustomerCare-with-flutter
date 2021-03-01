@@ -48,6 +48,7 @@ func (uh *userapi) PostUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type","application/json")
 	_ = json.NewDecoder(r.Body).Decode(&u)
 	uh.userService.StoreUser(&u)
+	_ = json.NewEncoder(w).Encode(u)
 
 }
 func (uh *userapi) PutUser(w http.ResponseWriter, r *http.Request,ps httprouter.Params) {
@@ -66,6 +67,7 @@ func (uh *userapi) DeleteUser(w http.ResponseWriter, r *http.Request,ps httprout
 
 	id,_ := strconv.Atoi(ps.ByName("id"))
 	uh.userService.DeleteUser(uint(id))
+
 }
 func (uh *userapi) Login(w http.ResponseWriter, r *http.Request){
 	var u entity.Login
@@ -82,12 +84,24 @@ func (uh *userapi) Login(w http.ResponseWriter, r *http.Request){
 		Name:  "token",
 		Value: tokenString,
 	})
-
+	var i = 0
+	if(u.Username == "admin" && u.Password == "adminpass"){
+		_ = json.NewEncoder(w).Encode("admin")
+		i++
+	}
+	
 	for _,us := range userData{
+		
 		if us.Username == u.Username && us.Password == u.Password{
-			_ = json.NewEncoder(w).Encode(tokenString)
+			_ = json.NewEncoder(w).Encode(us)
+			i++
+			
 		}
 	}
+	if i != 1 {
+		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
+	}
+	
 }
 
 func (uh *userapi) Logout(w http.ResponseWriter, r *http.Request) {

@@ -42,6 +42,7 @@ func (ca *commentapi) PostComment(w http.ResponseWriter, r *http.Request) {
 	var u entity.Comment
 
 	w.Header().Set("Content-Type","application/json")
+	
 	_ = json.NewDecoder(r.Body).Decode(&u)
 	ca.commentService.StoreComment(&u)
 

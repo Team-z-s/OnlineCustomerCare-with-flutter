@@ -69,7 +69,7 @@ func main() {
 	compapi := api.NewCompanyApi(compserv)
 	commentapi := api.NewCommentApi(commentserv)
 	serviceapi := api.NewServiceApi(servServ)
-	sacapi := api.NewSacApi(sacServ)
+	sacapi := api.NewSacApi(sacServ,servServ,compserv)
   
 //##############################################mulriplexer and http handle functions######################################################################
 

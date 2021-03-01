@@ -16,8 +16,8 @@ type Claims struct {
 
 //Admin struct contain admin info
 type Admin struct {
-	username string
-	password string
+	username string 
+	password string 
 }
 
 //User struct contain info about user
@@ -34,13 +34,15 @@ type User struct {
 }
 type Companie struct {
 	ID       int
+	Rate int
 	FullName string `gorm:"type:varchar(255);not null; unique"`
 	Logo     string `gorm:"type:varchar(255)"`
 	Email    string `gorm:"type:varchar(255);not null; unique"`
 	Phone    string `gorm:"type:varchar(255);not null; unique"`
 	Address  string `gorm:"type:varchar(255)"`
 	Moto     string `gorm:"type:varchar(255)"`
-	Password string `gorm:"type:varchar(255);not null "`
+	Password string `gorm:"type:varchar(255)"`
+	
 }
 
 //Service contains fields of service
@@ -59,10 +61,10 @@ type Company_vs_service struct {
 type Comment struct {
 	ID        uint
 	Comp_id int
+	Rate int
 	Username  string `gorm:"type:varchar(255)"`
 	Message   string `gorm:"type:varchar(255)"`
-	Email     string `gorm:"type:varchar(255);not null; unique"`
-	Posted_at time.Time
+
 }
 //Address contains country,city, woreda,kebele
 type Address struct {
@@ -124,7 +126,6 @@ type Roles struct {
 type Account struct{
 	Username string `gorm:"type:varchar(255);not null;unique"`
 	Password string `gorm:"type:varchar(255);not null"`
-
 	Role_id int `json:"role_id" `
 }
 
