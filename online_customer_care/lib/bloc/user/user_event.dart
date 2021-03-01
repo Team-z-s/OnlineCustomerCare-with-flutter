@@ -1,5 +1,6 @@
 
 import 'package:equatable/equatable.dart';
+import 'package:online_customer_care/models/login.dart';
 
 import 'package:online_customer_care/models/user.dart';
 
@@ -34,5 +35,15 @@ class UserDelete extends UserEvent{
 
   @override
   List<Object> get props => [user];
+
+}
+class LoginEvent extends UserEvent{
+  final LoginModel log;
+  const LoginEvent(this.log);
+
+  @override
+
+  List<Object> get props => [log];
+
 
 }

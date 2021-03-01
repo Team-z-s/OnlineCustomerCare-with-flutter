@@ -12,7 +12,7 @@ class Service{
 }
 Service _$UserFromJson(Map<String, dynamic> json) {
   return Service(
-      id: json['id'] as int,
+      id: json['ID'] as int,
       Name: json['Name'] as String,
       Description: json['Description'] as String,
       Image: json['Image'] as String,
@@ -23,7 +23,7 @@ Service _$UserFromJson(Map<String, dynamic> json) {
 }
 Map<String, dynamic> _$ServiceToJson(Service instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'ID': instance.id,
       'Name': instance.Name,
       'Description': instance.Description,
       'Image': instance.Image,

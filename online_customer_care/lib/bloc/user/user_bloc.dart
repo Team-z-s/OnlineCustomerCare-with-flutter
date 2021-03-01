@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:online_customer_care/bloc/user/user_event.dart';
 import 'package:online_customer_care/bloc/user/user_state.dart';
+import 'package:online_customer_care/models/user.dart';
 
 import 'package:online_customer_care/repositories/user_repository.dart';
 
@@ -46,6 +47,15 @@ class UserBloc extends Bloc<UserEvent,UserState>{
         final user = await userRepository.getUserList();
         yield UserLoadSuccess(user);
       } catch (_) {
+        yield UserOperationFailure();
+      }
+    }
+    if(event is LoginEvent){
+      try {
+        final user = await userRepository.Login(event.log);
+        final List<User> users = [user];
+        yield UserLoadSuccess(users);
+      }catch(_){
         yield UserOperationFailure();
       }
     }

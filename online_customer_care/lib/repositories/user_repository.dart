@@ -1,6 +1,8 @@
 import 'package:meta/meta.dart';
 
 import 'package:online_customer_care/data_provider/user_data.dart';
+import 'package:online_customer_care/models/login.dart';
+import 'package:online_customer_care/models/login.dart';
 
 import 'package:online_customer_care/models/user.dart';
 
@@ -24,10 +26,12 @@ class UserRepository {
   Future<void> deleteUser(int id) async {
     return await dataProvider.deleteUser(id);
   }
-  Future<void> createUser(User user) async {
+  Future<User> createUser(User user) async {
     return await dataProvider.createUser(user);
   }
-
+  Future<User> Login(LoginModel log) async{
+    return await dataProvider.login(log);
+  }
 
 
 }
